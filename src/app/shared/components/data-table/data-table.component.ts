@@ -48,7 +48,7 @@ import {
     MatIconModule,
     MatTooltipModule,
     EmptyStateComponent
-  ],
+],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css'
 })
