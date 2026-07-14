@@ -1,0 +1,155 @@
+<section class="table-container">
+  @if (loading()) {
+    <div class="table-skeleton">
+      <div class="skeleton-toolbar"></div>
+      @for (row of skeletonRows(); track $index) {
+        <div class="skeleton-row">
+          @for (
+            column of skeletonColumns;
+            track $index
+          ) {
+            <span class="skeleton-cell"></span>
+          }
+        </div>
+      }
+    </div>
+  } @else if (rows().length === 0) {
+    <div class="table-state">
+      <mat-icon>inbox</mat-icon>
+
+      <p>{{ emptyMessage() }}</p>
+    </div>
+  } @else {
+    <div class="table-scroll">
+      <table
+        mat-table
+        matSort
+        [dataSource]="dataSource"
+      >
+        @for (
+          column of columns();
+          track column.key
+        ) {
+          <ng-container
+            [matColumnDef]="column.key.toString()"
+          >
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              class="table-header-cell"
+              [ngClass]="column.headerClass"
+              [mat-sort-header]="
+                column.key.toString()
+              "
+              [disabled]="
+                column.sortable === false
+              "
+            >
+              {{ column.header }}
+            </th>
+
+            <td
+              mat-cell
+              *matCellDef="let row"
+              class="table-body-cell"
+            >
+              <span
+                class="cell-content"
+                [ngClass]="
+                  getCellClass(row, column)
+                "
+              >
+                {{ getCellValue(row, column) }}
+              </span>
+            </td>
+          </ng-container>
+        }
+
+        @if (actions().length > 0) {
+          <ng-container matColumnDef="actions">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              class="table-header-cell actions-header"
+            >
+              Actions
+            </th>
+
+            <td
+              mat-cell
+              *matCellDef="let row"
+              class="table-body-cell actions-cell"
+            >
+              <div class="table-actions">
+                @for (
+                  action of actions();
+                  track action.id
+                ) {
+                  @if (
+                    isActionVisible(action, row)
+                  ) {
+                    <button
+                      mat-icon-button
+                      class="action-button"
+                      [class.action-view]="
+                        action.id === 'view'
+                      "
+                      [class.action-edit]="
+                        action.id === 'edit'
+                      "
+                      [class.action-delete]="
+                        action.id === 'delete'
+                      "
+                      type="button"
+                      [matTooltip]="action.label"
+                      [disabled]="
+                        isActionDisabled(
+                          action,
+                          row
+                        )
+                      "
+                      [attr.aria-label]="
+                        action.label
+                      "
+                      (click)="
+                        emitAction(
+                          action.id,
+                          row
+                        )
+                      "
+                    >
+                      <mat-icon>
+                        {{ action.icon }}
+                      </mat-icon>
+                    </button>
+                  }
+                }
+              </div>
+            </td>
+          </ng-container>
+        }
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="
+            displayedColumns()
+          "
+        ></tr>
+
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: displayedColumns()
+          "
+        ></tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="pageSizeOptions()"
+      showFirstLastButtons
+    />
+  }
+</section>

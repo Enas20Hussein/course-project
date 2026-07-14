@@ -1,0 +1,116 @@
+<section class="courses-page">
+  <section class="hero-panel">
+    <div class="hero-copy">
+      <p class="eyebrow">Course Studio</p>
+      <h1>Courses</h1>
+      <p class="hero-text">
+        A calmer workspace for browsing, filtering, and managing your learning catalog without visual noise.
+      </p>
+
+      <div class="hero-stats">
+        <article>
+          <strong>{{ courses().length }}</strong>
+          <span>Total courses</span>
+        </article>
+        <article>
+          <strong>{{ activeCoursesCount() }}</strong>
+          <span>Active now</span>
+        </article>
+        <article>
+          <strong>{{ filteredCourses().length }}</strong>
+          <span>Visible results</span>
+        </article>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <p class="hero-note-label">Quick action</p>
+      <h2>Start a fresh course record</h2>
+      <p class="hero-note">
+        Add a new item, fill the essentials, and publish it into your catalog in a few clicks.
+      </p>
+
+      <div class="hero-action-row">
+        <a
+          mat-flat-button
+          class="primary-cta"
+          routerLink="/courses/new"
+        >
+          <mat-icon>add</mat-icon>
+          Add Course
+        </a>
+
+        <span class="hero-inline-meta">CRUD ready</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="filters-panel">
+    <section class="filters">
+      <label class="filter-field search-field">
+        <span>Search</span>
+        <input
+          #searchInput
+          type="search"
+          placeholder="Search by course, instructor, or category"
+          [value]="searchTerm()"
+          (input)="
+            updateSearchTerm(
+              searchInput.value
+            )
+          "
+        />
+      </label>
+
+      <label class="filter-field status-field">
+        <span>Status</span>
+        <select
+          #statusSelect
+          [value]="selectedStatus()"
+          (change)="
+            updateStatusFilter(
+              statusSelect.value
+            )
+          "
+        >
+          <option value="All">All statuses</option>
+          @for (
+            status of courseStatuses;
+            track status
+          ) {
+            <option [value]="status">
+              {{ status }}
+            </option>
+          }
+        </select>
+      </label>
+    </section>
+  </section>
+
+  @if (errorMessage()) {
+    <section class="error-state">
+      <p>{{ errorMessage() }}</p>
+
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="loadCourses()"
+      >
+        Try API Again
+      </button>
+    </section>
+  }
+
+  <app-data-table
+    [rows]="filteredCourses()"
+    [columns]="columns"
+    [actions]="tableActions"
+    [loading]="loading()"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    emptyMessage="No courses found."
+    (actionClicked)="
+      onTableAction($event)
+    "
+  />
+</section>

@@ -1,0 +1,38 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "courseName": "Angular Fundamentals",
+      "instructorName": "Ahmed Ali",
+      "category": "Frontend",
+      "duration": 20,
+      "price": 1500,
+      "status": "Active",
+      "description": "Introduction to Angular and modern frontend development.",
+      "createdDate": "2026-06-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "courseName": "Node.js API Essentials",
+      "instructorName": "Sara Mohamed",
+      "category": "Backend",
+      "duration": 16,
+      "price": 1800,
+      "status": "Draft",
+      "description": "Build REST APIs with Node.js, Express, and best practices.",
+      "createdDate": "2026-05-10T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "courseName": "TypeScript for Scale",
+      "instructorName": "Mostafa Hassan",
+      "category": "Programming",
+      "duration": 15,
+      "price": 1700,
+      "status": "Archived",
+      "description": "Master strong typing, utility types, and large-scale app structure.",
+      "createdDate": "2026-04-15T00:00:00.000Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

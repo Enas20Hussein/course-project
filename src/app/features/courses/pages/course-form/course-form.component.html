@@ -1,0 +1,140 @@
+<section class="form-page">
+  <div class="form-shell">
+    <section class="page-hero">
+      <div class="hero-copy">
+        <h1>{{ isEditMode ? 'Edit course' : 'Create a new course' }}</h1>
+        <p class="subtitle">
+          {{
+          isEditMode
+          ? 'Update the course information and keep your catalog polished and accurate.'
+          : 'Add a clean, complete course record with the key information your team needs.'
+          }}
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <div class="hero-badges">
+          <span>{{ isEditMode ? 'Editing mode' : 'New course' }}</span>
+          <span>Complete form</span>
+
+        </div>
+
+        <a mat-stroked-button routerLink="/courses">
+          <mat-icon>arrow_back</mat-icon>
+          Back to courses
+        </a>
+      </div>
+    </section>
+
+    <section class="editor-card">
+      <div class="editor-header">
+        <div>
+          <p class="section-kicker">Course Editor</p>
+          <h2>{{ isEditMode ? 'Course information' : 'Create course profile' }}</h2>
+        </div>
+      </div>
+
+      @if (loading()) {
+      <section class="state-card">
+        <mat-spinner diameter="36" />
+        <p>Loading course data...</p>
+      </section>
+      } @else {
+      @if (errorMessage()) {
+      <section class="state-card error-card">
+        <p>{{ errorMessage() }}</p>
+      </section>
+      }
+
+      <form class="course-form" [formGroup]="courseForm" (ngSubmit)="submitForm()">
+        <label class="form-field">
+          <span>Course Name</span>
+          <input type="text" formControlName="courseName" [class.input-invalid]="hasFieldError('courseName')" />
+          @if (hasFieldError('courseName')) {
+          <small class="field-error">{{ getFieldError('courseName') }}</small>
+          }
+        </label>
+
+        <label class="form-field">
+          <span>Instructor Name</span>
+          <input type="text" formControlName="instructorName" [class.input-invalid]="hasFieldError('instructorName')" />
+          @if (hasFieldError('instructorName')) {
+          <small class="field-error">{{ getFieldError('instructorName') }}</small>
+          }
+        </label>
+
+        <label class="form-field">
+          <span>Category</span>
+          <input type="text" formControlName="category" [class.input-invalid]="hasFieldError('category')" />
+          @if (hasFieldError('category')) {
+          <small class="field-error">{{ getFieldError('category') }}</small>
+          }
+        </label>
+
+        <label class="form-field">
+          <span>Status</span>
+          <select formControlName="status" [class.input-invalid]="hasFieldError('status')">
+            <option value="" disabled>Select status</option>
+            @for (status of statuses; track status) {
+            <option [value]="status">
+              {{ status }}
+            </option>
+            }
+          </select>
+          @if (hasFieldError('status')) {
+          <small class="field-error">{{ getFieldError('status') }}</small>
+          }
+        </label>
+
+        <label class="form-field">
+          <span>Duration (hours)</span>
+          <input type="number" min="1" formControlName="duration" [class.input-invalid]="hasFieldError('duration')" />
+          @if (hasFieldError('duration')) {
+          <small class="field-error">{{ getFieldError('duration') }}</small>
+          }
+        </label>
+
+        <label class="form-field">
+          <span>Price (EGP)</span>
+          <input type="number" min="0" formControlName="price" [class.input-invalid]="hasFieldError('price')" />
+          @if (hasFieldError('price')) {
+          <small class="field-error">{{ getFieldError('price') }}</small>
+          }
+        </label>
+
+        <label class="form-field form-field-wide">
+          <span>Description</span>
+          <textarea rows="5" formControlName="description"
+            [class.input-invalid]="hasFieldError('description')"></textarea>
+          <div class="field-meta">
+            @if (hasFieldError('description')) {
+            <small class="field-error">{{ getFieldError('description') }}</small>
+            }
+            <small class="field-hint">
+              {{ courseForm.controls.description.value?.length ?? 0 }}/500
+            </small>
+          </div>
+        </label>
+
+        <div class="form-actions">
+          <button mat-flat-button class="save-button" color="primary" type="submit"
+            [disabled]="courseForm.invalid || saving()">
+            <mat-icon>
+              {{ isEditMode ? 'save' : 'add_circle' }}
+            </mat-icon>
+            {{ saving() ? 'Saving...' : isEditMode ? 'Save Changes' : 'Create Course' }}
+          </button>
+
+          <a
+            mat-stroked-button
+            class="cancel-button"
+            routerLink="/courses"
+          >
+            Cancel
+          </a>
+        </div>
+      </form>
+      }
+    </section>
+  </div>
+</section>

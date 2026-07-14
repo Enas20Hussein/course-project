@@ -1,0 +1,128 @@
+<section class="details-page">
+  <div class="details-shell">
+    @if (loading()) {
+      <div class="hero-card state-shell">
+        <p class="eyebrow">Course Details</p>
+        <div class="state-block">
+          <mat-spinner diameter="36" />
+          <p>Loading course details...</p>
+        </div>
+      </div>
+    } @else if (errorMessage()) {
+      <div class="hero-card state-shell">
+        <p class="eyebrow">Course Details</p>
+        <div class="state-block error-block">
+          <p>{{ errorMessage() }}</p>
+        </div>
+      </div>
+    } @else {
+      @if (course(); as selectedCourse) {
+        <section class="hero-card">
+          <div class="hero-copy">
+            <p class="eyebrow">Course Details</p>
+            <div class="hero-content">
+              <div class="hero-headline">
+                <span
+                  class="status-pill"
+                  [class.status-active]="selectedCourse.status === 'Active'"
+                  [class.status-draft]="selectedCourse.status === 'Draft'"
+                  [class.status-archived]="selectedCourse.status === 'Archived'"
+                >
+                  {{ selectedCourse.status }}
+                </span>
+
+                <h1>{{ selectedCourse.courseName }}</h1>
+                <p class="subtitle">
+                  {{ selectedCourse.description }}
+                </p>
+              </div>
+
+              <div class="hero-actions">
+                <a
+                  mat-flat-button
+                  class="primary-action"
+                  color="primary"
+                  [routerLink]="['/courses', selectedCourse.id, 'edit']"
+                >
+                  <mat-icon>edit</mat-icon>
+                  Edit Course
+                </a>
+
+                <a mat-stroked-button routerLink="/courses">
+                  <mat-icon>arrow_back</mat-icon>
+                  Back to courses
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-panel">
+            <p class="summary-label">At a glance</p>
+            <div>
+              <span>Instructor</span>
+              <strong>{{ selectedCourse.instructorName }}</strong>
+            </div>
+            <div>
+              <span>Duration</span>
+              <strong>{{ selectedCourse.duration }} hours</strong>
+            </div>
+            <div>
+              <span>Price</span>
+              <strong>{{ selectedCourse.price | currency:'EGP':'symbol':'1.2-2':'en' }}</strong>
+            </div>
+          </aside>
+        </section>
+
+        <section class="details-grid">
+          <article class="info-card highlight-card">
+            <div class="card-head">
+              <p class="card-label">Quick Snapshot</p>
+              <p class="card-text">A quick read of the main teaching and commercial details.</p>
+            </div>
+
+            <div class="metric-grid">
+              <div class="metric">
+                <span>Instructor</span>
+                <strong>{{ selectedCourse.instructorName }}</strong>
+              </div>
+              <div class="metric">
+                <span>Category</span>
+                <strong>{{ selectedCourse.category }}</strong>
+              </div>
+              <div class="metric">
+                <span>Duration</span>
+                <strong>{{ selectedCourse.duration }} hours</strong>
+              </div>
+              <div class="metric">
+                <span>Price</span>
+                <strong>{{ selectedCourse.price | currency:'EGP':'symbol':'1.2-2':'en' }}</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-head">
+              <p class="card-label">Metadata</p>
+              <p class="card-text">Reference details for tracking and reviewing this item.</p>
+            </div>
+
+            <div class="meta-list">
+              <div>
+                <span>Course ID</span>
+                <strong>#{{ selectedCourse.id }}</strong>
+              </div>
+              <div>
+                <span>Created Date</span>
+                <strong>{{ selectedCourse.createdDate | date:'dd/MM/yyyy' }}</strong>
+              </div>
+              <div>
+                <span>Status</span>
+                <strong>{{ selectedCourse.status }}</strong>
+              </div>
+            </div>
+          </article>
+        </section>
+      }
+    }
+  </div>
+</section>

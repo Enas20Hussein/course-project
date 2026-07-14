@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f6f8fc 0%, #eef3f9 100%);
+  color: #1b2a41;
+  font-family: "Trebuchet MS", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --page-max-width: 1220px;
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-strong: #ffffff;
+  --surface-muted: #eef4fb;
+  --ink-strong: #16253d;
+  --ink-soft: #5f7088;
+  --line-soft: rgba(22, 37, 61, 0.1);
+  --accent: #1f5f99;
+  --accent-soft: #e2eefb;
+  --accent-strong: #174a78;
+  --accent-warm: #f97316;
+  --danger-soft: #fff1f2;
+  --shadow-soft: 0 22px 60px rgba(25, 52, 88, 0.12);
+  --shadow-card: 0 14px 38px rgba(25, 52, 88, 0.08);
+}
+
+.toast-success {
+  --mdc-snackbar-container-color: #174a78 !important;
+  --mdc-snackbar-supporting-text-color: #f8fbff !important;
+  --mat-snack-bar-button-color: #d9ebff !important;
+}
+
+.toast-error {
+  --mdc-snackbar-container-color: #9f1239 !important;
+  --mdc-snackbar-supporting-text-color: #fff1f2 !important;
+  --mat-snack-bar-button-color: #fecdd3 !important;
+}
+
+.toast-info {
+  --mdc-snackbar-container-color: #16253d !important;
+  --mdc-snackbar-supporting-text-color: #f8fafc !important;
+  --mat-snack-bar-button-color: #dbeafe !important;
+}
