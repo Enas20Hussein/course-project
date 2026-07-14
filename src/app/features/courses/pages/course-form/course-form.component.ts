@@ -17,6 +17,8 @@ import { map } from 'rxjs/operators';
 import { PendingChangesGuarded } from '../../../../core/guards/pending-changes.guard';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../../../shared/components/loading-state/loading-state.component';
 import {
   COURSE_STATUSES,
   CourseFormValue,
@@ -35,7 +37,9 @@ import { CourseService } from '../../services/course.service';
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    LoadingStateComponent,
+    EmptyStateComponent
   ],
   templateUrl: './course-form.component.html',
   styleUrl: './course-form.component.css'

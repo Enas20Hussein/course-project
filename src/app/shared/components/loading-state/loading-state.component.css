@@ -1,0 +1,19 @@
+.loading-state {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 16px;
+  width: 100%;
+  padding: 28px 24px;
+  color: var(--ink-soft, #64748b);
+  text-align: center;
+}
+
+.loading-state p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.loading-state-inline {
+  padding-inline: 0;
+}

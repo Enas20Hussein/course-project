@@ -1,0 +1,55 @@
+.empty-state {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 16px;
+  width: 100%;
+  padding: 32px 24px;
+  color: var(--ink-soft, #64748b);
+  text-align: center;
+}
+
+.empty-state-icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(31, 95, 153, 0.1) 0%,
+    rgba(249, 115, 22, 0.12) 100%
+  );
+  color: var(--accent, #1f5f99);
+}
+
+.empty-state-icon mat-icon {
+  width: 34px;
+  height: 34px;
+  font-size: 34px;
+}
+
+.empty-state-copy {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+}
+
+.empty-state-copy h3,
+.empty-state-copy p {
+  margin: 0;
+}
+
+.empty-state-copy h3 {
+  color: var(--ink-strong, #1f2937);
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.empty-state-copy p {
+  line-height: 1.7;
+}
+
+.empty-state-compact {
+  padding-inline: 0;
+}

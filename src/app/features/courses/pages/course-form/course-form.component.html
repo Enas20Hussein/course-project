@@ -35,14 +35,21 @@
       </div>
 
       @if (loading()) {
-      <section class="state-card">
-        <mat-spinner diameter="36" />
-        <p>Loading course data...</p>
-      </section>
+      <app-loading-state
+        class="state-card"
+        message="Loading course data..."
+        minHeight="220px"
+      />
       } @else {
       @if (errorMessage()) {
       <section class="state-card error-card">
-        <p>{{ errorMessage() }}</p>
+        <app-empty-state
+          icon="error_outline"
+          title="Unable to load course"
+          [message]="errorMessage()"
+          [compact]="true"
+          minHeight="auto"
+        />
       </section>
       }
 

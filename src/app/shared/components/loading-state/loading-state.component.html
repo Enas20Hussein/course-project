@@ -1,0 +1,8 @@
+<section
+  class="loading-state"
+  [class.loading-state-inline]="inline()"
+  [style.minHeight]="minHeight()"
+>
+  <mat-spinner [diameter]="diameter()" />
+  <p>{{ message() }}</p>
+</section>

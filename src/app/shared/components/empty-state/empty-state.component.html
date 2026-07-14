@@ -1,0 +1,16 @@
+<section
+  class="empty-state"
+  [class.empty-state-compact]="compact()"
+  [style.minHeight]="minHeight()"
+>
+  <div class="empty-state-icon">
+    <mat-icon>{{ icon() }}</mat-icon>
+  </div>
+
+  <div class="empty-state-copy">
+    <h3>{{ title() }}</h3>
+    <p>{{ message() }}</p>
+  </div>
+
+  <ng-content />
+</section>

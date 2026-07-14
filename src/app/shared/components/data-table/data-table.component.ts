@@ -27,7 +27,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EmptyStateComponent } from '../empty-state/empty-state.component';
 
 import {
   TableAction,
@@ -47,7 +47,7 @@ import {
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    EmptyStateComponent
   ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css'
@@ -71,6 +71,9 @@ export class DataTableComponent<
 
   readonly emptyMessage =
     input('No records found.');
+
+  readonly emptyTitle =
+    input('Nothing to show');
 
   readonly pageSize = input(5);
 

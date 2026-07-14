@@ -4,6 +4,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../../../shared/components/loading-state/loading-state.component';
 
 import { Course } from '../../models/course.model';
 import { CourseService } from '../../services/course.service';
@@ -17,6 +19,8 @@ import { CourseService } from '../../services/course.service';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    EmptyStateComponent,
+    LoadingStateComponent,
     DatePipe,
     CurrencyPipe
   ],

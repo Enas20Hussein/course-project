@@ -104,18 +104,13 @@
 
 .state-card {
   display: grid;
-  justify-items: center;
-  gap: 16px;
-  padding: 48px 24px;
-  color: var(--ink-soft);
+  padding: 0;
   background: rgba(255, 255, 255, 0.94);
 }
 
 .error-card {
-  justify-items: start;
   margin-bottom: 20px;
   padding: 20px 24px;
-  color: #9f1239;
   background: var(--danger-soft);
   border-color: #fecdd3;
   box-shadow: none;

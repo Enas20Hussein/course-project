@@ -3,17 +3,24 @@
     @if (loading()) {
       <div class="hero-card state-shell">
         <p class="eyebrow">Course Details</p>
-        <div class="state-block">
-          <mat-spinner diameter="36" />
-          <p>Loading course details...</p>
-        </div>
+        <app-loading-state
+          class="state-block"
+          message="Loading course details..."
+          [inline]="true"
+          minHeight="auto"
+        />
       </div>
     } @else if (errorMessage()) {
       <div class="hero-card state-shell">
         <p class="eyebrow">Course Details</p>
-        <div class="state-block error-block">
-          <p>{{ errorMessage() }}</p>
-        </div>
+        <app-empty-state
+          class="state-block error-block"
+          icon="error_outline"
+          title="Course unavailable"
+          [message]="errorMessage()"
+          [compact]="true"
+          minHeight="auto"
+        />
       </div>
     } @else {
       @if (course(); as selectedCourse) {
@@ -48,7 +55,11 @@
                   Edit Course
                 </a>
 
-                <a mat-stroked-button routerLink="/courses">
+                <a
+                  mat-stroked-button
+                  class="secondary-action"
+                  routerLink="/courses"
+                >
                   <mat-icon>arrow_back</mat-icon>
                   Back to courses
                 </a>

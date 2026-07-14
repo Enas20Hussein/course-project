@@ -14,11 +14,13 @@
       }
     </div>
   } @else if (rows().length === 0) {
-    <div class="table-state">
-      <mat-icon>inbox</mat-icon>
-
-      <p>{{ emptyMessage() }}</p>
-    </div>
+    <app-empty-state
+      [title]="emptyTitle()"
+      [message]="emptyMessage()"
+      [compact]="true"
+      icon="inbox"
+      minHeight="220px"
+    />
   } @else {
     <div class="table-scroll">
       <table
